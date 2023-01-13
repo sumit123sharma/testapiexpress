@@ -51,12 +51,12 @@ app.get('/getClientAll' ,  async (req, res) => {
         const user = await User.find().sort({ createdAt: -1 })
             .skip(req.body.page > 0 ? (req.body.page - 1) * 10 : 0)
             .limit(10)
-        res.status(200).send({
+        res.status(200).json({
             status: 200,
             message: "usres fetch successfully", user, countClient
         });
     } catch (error) {
-        res.status(404).send({ message: error.message });
+        res.status(404).json({ message: error.message });
     }
 })
 
