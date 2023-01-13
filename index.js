@@ -47,15 +47,15 @@ mongoose.set('strictQuery', false);
 // Retrieve all users from the database.
 app.get('/getClientAll' ,  async (req, res) => {
     try {
-        const countClient = await User.find().countDocuments()
         const user = await User.find().sort({ createdAt: -1 })
             .skip(req.body.page > 0 ? (req.body.page - 1) * 10 : 0)
             .limit(10)
         res.status(200).json({
             status: 200,
-            message: "usres fetch successfully", user, countClient
+            message: "usres fetch successfully", user
         });
     } catch (error) {
+        console.log("err=========",error)
         res.status(404).json({ message: error.message });
     }
 })
