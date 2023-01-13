@@ -46,7 +46,7 @@ mongoose.set('strictQuery', false);
 
 // Retrieve all users from the database.
 app.get('/getClientAll' ,  async (req, res) => {
-    try {
+    /*try {
         const user = await User.find().sort({ createdAt: -1 })
             .skip(req.body.page > 0 ? (req.body.page - 1) * 10 : 0)
             .limit(10)
@@ -57,7 +57,19 @@ app.get('/getClientAll' ,  async (req, res) => {
     } catch (error) {
         console.log("err=========",error)
         res.status(404).json({ message: error.message });
+    }*/
+    try {
+        const facebookData = {
+            "Name": "Sumit Sharma",
+            "Followers": 234,
+            "following": 200,
+            "email": "sumit12@gmail.com"
+        }
+        res.json(facebookData)
+    } catch (err) {
+        res.json(err.message)
     }
+    
 })
 
 
