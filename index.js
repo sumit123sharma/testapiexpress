@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const morgan = require('morgan')
 const UserRoute = require('./routes/user')
+const User = require('./models/user')
 var cors = require('cors')
 const path = require('path')
 
@@ -43,7 +44,21 @@ mongoose.connect(dbConfig.url, {
 mongoose.set('strictQuery', false);
 
 
-
+// Retrieve all users from the database.
+app.get('/getClientAll' ,  async (req, res) => {
+    try {
+        const countClient = await User.find().countDocuments()
+        const user = await User.find().sort({ createdAt: -1 })
+            .skip(req.body.page > 0 ? (req.body.page - 1) * 10 : 0)
+            .limit(10)
+        res.status(200).send({
+            status: 200,
+            message: "usres fetch successfully", user, countClient
+        });
+    } catch (error) {
+        res.status(404).send({ message: error.message });
+    }
+})
 
 
 app.get('/insta', (req, res) => {

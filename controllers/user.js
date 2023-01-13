@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt')
 
 
 exports.getInfo = async (req, res) => {
-    res.json({ "message": "Hello Node Express Application! you are in production" });
+    res.json({ "message": "Hello Express Application! you are in production" });
 }
 
 
