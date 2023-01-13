@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 const dbConfig = require('./config/db');
 
-app.use('', UserRoute)
+app.use('/api', UserRoute)
 
 
 mongoose.Promise = global.Promise;
@@ -43,9 +43,7 @@ mongoose.connect(dbConfig.url, {
 mongoose.set('strictQuery', false);
 
 
-app.get('/', (req, res) => {
-    res.json({ "message": "Hello Node Express Application! you are in production" });
-});
+
 
 
 app.get('/insta', (req, res) => {

@@ -3,6 +3,12 @@ const User = require('../models/user.js')
 const bcrypt = require('bcrypt')
 
 
+
+exports.getInfo = async (req, res) => {
+    res.json({ "message": "Hello Node Express Application! you are in production" });
+}
+
+
 exports.create = async (req, res) => {
     try {
         let data = req.body
